@@ -1,0 +1,21 @@
+{
+  "pizzas" : [{
+     "id": 1, 
+     "name": "Cheese pizza", 
+      "IsGlutenFree": false,
+     "description": "very cheesy"
+   },
+   {
+     "id": 2, 
+     "name": "Al Tono pizza", 
+     "IsGlutenFree": true,
+     "description": "lots of tuna"
+   },
+   {
+      "id": 3, 
+      "name": "Tikka pizza", 
+      "IsGlutenFree": true,
+      "description": "lots of chicken"
+    }
+  ]
+}

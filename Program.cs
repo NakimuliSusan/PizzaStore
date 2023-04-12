@@ -2,6 +2,9 @@ using ContosoPizza.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
+const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 //checks the configuration provider for a connection string named Pizzas. If it
@@ -18,6 +21,15 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1" });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+      builder =>
+      {
+          builder.WithOrigins("*");
+      });
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
@@ -26,6 +38,9 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json",
         "PizzaStore API V1");
 });
+
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.MapGet("/", () => "Hello World!");
 // get method returns a list of pizzas 
